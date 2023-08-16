@@ -10,15 +10,15 @@ The file below is created when the program is run in a certain section:
 
 UK Codes:
 
-LPL
-BOH
+- LPL
+- BOH
 
 OS (Overseas) Codes:
 
-JFK
-ORY
-MAD
-AMS
-CAI
+- JFK
+- ORY
+- MAD
+- AMS
+- CAI
 
 Airport codes ARE ACCEPTED in lowercase (Example - lpl, jfk, ams)
