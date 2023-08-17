@@ -69,6 +69,15 @@ overseasairport5codelwr = 'cai'
 overseasairport5lpl = '3779'
 overseasairport5boh = '3584'
 
+#User Inputs
+ukairportchoicecode = ''
+#====================
+overseasairportchoicecode = ''
+#====================
+planechoice = ''
+#====================
+firstyes = 'n'
+
 #Saved Flight Database
 flight1 = 'No Flight Scheduled.'
 #====================
@@ -92,6 +101,8 @@ flight1first = 'N/A'
 #====================
 flight1distance = 'N/A'
 #====================
+flight1firstyes = 'n'
+#====================
 flight2 = 'No Flight Scheduled.'
 #====================
 flight2uk = 'N/A'
@@ -114,6 +125,8 @@ flight2first = 'N/A'
 #====================
 flight2distance = 'N/A'
 #====================
+flight2firstyes = 'n'
+#====================
 flight3 = 'No Flight Scheduled.'
 #====================
 flight3uk = 'N/A'
@@ -135,6 +148,8 @@ flight3standard = 'N/A'
 flight3first = 'N/A'
 #====================
 flight3distance = 'N/A'
+#====================
+flight3firstyes = 'n'
 
 #==============================================================================================
 
@@ -150,9 +165,10 @@ def mainmenu():
     print("Enter '2' To Enter Flight Details")
     print("Enter '3' To Enter Price Plan And Calculate Profit")
     print("Enter '4' To View Save Slots")
-    print("Enter '5' To Clear Data (ONLY Program Data)")
-    print("Enter '6' To Clear Database/File (ONLY Database/File)")
-    print("Enter '7' To Quit")
+    print("Enter '5' To Update Database File (With Current Program Data)")
+    print("Enter '6' To Clear Data (ONLY Program Data)")
+    print("Enter '7' To Clear Database File (ONLY Database File)")
+    print("Enter '8' To Quit")
     
     print("")
     
@@ -161,7 +177,17 @@ def mainmenu():
 def mainmenuchoices():
     
     menuuser=input("Enter option here: ")
-    print("")
+    
+    if menuuser.isdigit():
+        
+        print("")
+        
+    else:
+        
+        print("Invalid Input! You have to enter a number for this question. Please try again...")
+        print("")
+        
+        mainmenuchoices()
     
     if menuuser == '1':
         
@@ -181,19 +207,23 @@ def mainmenuchoices():
         
     elif menuuser == '5':
         
-        cleardata()
+        filehandlesection()
         
     elif menuuser == '6':
         
-        fileclear()
+        cleardata()
         
     elif menuuser == '7':
+        
+        fileclear()
+        
+    elif menuuser == '8':
         
         quitsec()
         
     else:
         
-        print("Invalid Input! Please Try Again!")
+        print("Invalid Input! Please Try Again With A Listed Number.")
         print("")
         
         mainmenuchoices()
@@ -220,9 +250,20 @@ def airportdetails():
         
         overseasairportchoicenon=input("Enter Overseas Airport Code: ")
         
+        if overseasairportchoicenon.isdigit():
+            
+            print("Invalid Input! Airport codes are THREE LETTERS. (Example - JFK) Please try again...")
+            print("")
+            
+            mainmenu()
+            
+        else:
+            
+            print("")
+        
         if overseasairportchoicenon == overseasairport1code or overseasairportchoicenon == overseasairport1codelwr:
             
-            overseasaiportchoicecode = overseasairport1code
+            overseasairportchoicecode = overseasairport1code
             
             overseasairportchoice = overseasairport1
             
@@ -241,7 +282,6 @@ def airportdetails():
                 print("")
                 mainmenu()
             
-            print("")
             airportdetailsfinal()
             
         elif overseasairportchoicenon == overseasairport2code or overseasairportchoicenon == overseasairport2codelwr:
@@ -265,7 +305,6 @@ def airportdetails():
                 print("")
                 mainmenu()
             
-            print("")
             airportdetailsfinal()
             
         elif overseasairportchoicenon == overseasairport3code or overseasairportchoicenon == overseasairport3codelwr:
@@ -288,8 +327,7 @@ def airportdetails():
                 
                 print("")
                 mainmenu()
-            
-            print("")
+
             airportdetailsfinal()
             
         elif overseasairportchoicenon == overseasairport4code or overseasairportchoicenon == overseasairport4codelwr:
@@ -312,8 +350,7 @@ def airportdetails():
                 
                 print("")
                 mainmenu()
-            
-            print("")
+
             airportdetailsfinal()
             
         elif overseasairportchoicenon == overseasairport5code or overseasairportchoicenon == overseasairport5codelwr:
@@ -337,7 +374,6 @@ def airportdetails():
                 print("")
                 mainmenu()
             
-            print("")
             airportdetailsfinal()
             
         else:
@@ -356,13 +392,23 @@ def airportdetails():
     
     ukairportchoicenon=input("Enter UK Airport Code: ")
     
+    if ukairportchoicenon.isdigit():
+            
+        print("Invalid Input! Airport codes are THREE LETTERS. (Example - LPL) Please try again...")
+        print("")
+        
+        mainmenu()
+            
+    else:
+            
+        print("")
+    
     if ukairportchoicenon == ukairport1code or ukairportchoicenon == ukairport1codelwr:
         
         ukairportchoicecode = ukairport1code
         
         ukairportchoice = ukairport1
-        
-        print("")
+
         airportdetailsnext()
         
     elif ukairportchoicenon == ukairport2code or ukairportchoicenon == ukairport2codelwr:
@@ -370,8 +416,7 @@ def airportdetails():
         ukairportchoicecode = ukairport2code
         
         ukairportchoice = ukairport2
-        
-        print("")
+
         airportdetailsnext()
         
     else:
@@ -404,34 +449,50 @@ def flightdetails():
         global firstclassseatsnon
         global standardseatsnumb
         global firstclassseatsnon
+        global firstyes
         
         print("")
         
-        firstclassseatsnon=float(input("Number of First Class Seats? "))
+        firstclassseatsnon=input("Number of First Class Seats? ")
+        
+        if firstclassseatsnon.isdigit():
+            
+            print("")
+            
+            firstclassseatsnon=float(firstclassseatsnon)
+            
+        else:
+            
+            print("Invalid Input! You have to enter a number for this question. Please try again...")
+            print("")
+            
+            mainmenu()
         
         if float(firstclassseatsnon) == 0:
             
-            print("")
+            firstyes = 'n'
+
             flightdetailscalc()
             
         else:
             
             if float(firstclassseatsnon) < float(planechoiceminfirst):
                 print("Invalid Input. There must be more than " +planechoiceminfirst+ " for this specific aircraft.")
-                
                 print("")
+
                 mainmenu()
                 
             elif float(firstclassseatsnon) > float(firstclassseatsmax):
                 
                 print("Invalid Input. There must be " +str(firstclassseatsmax)+ " or less first class seats for this aircraft type.")
-                
                 print("")
+
                 mainmenu()
                 
             else:
                 
-                print("")
+                firstyes = 'y'
+                
                 flightdetailscalc()
             
     def flightdetailscalc():
@@ -534,13 +595,33 @@ def priceplan():
     
     def priceplancheck1():
         
-        if ukairportchoicecode == ukairport1code:
+        if ukairportchoicecode == ukairport1code or ukairportchoicecode == ukairport2code:
             
-            priceplancheck2()
+            if overseasairportchoicecode == overseasairport1code:
             
-        elif ukairportchoicecode == ukairport2code:
-
-            priceplancheck2()
+                priceplancheck2()
+                
+            elif overseasairportchoicecode == overseasairport2code:
+                
+                priceplancheck2()
+                
+            elif overseasairportchoicecode == overseasairport3code:
+                
+                priceplancheck2()
+                
+            elif overseasairportchoicecode == overseasairport4code:
+                
+                priceplancheck2()
+                
+            elif overseasairportchoicecode == overseasairport5code:
+                
+                priceplancheck2()
+                
+            else:
+                
+                print("You need to enter all the details for the airports before continuing.")
+                print("")
+                mainmenu()
             
         else:
             
@@ -615,9 +696,40 @@ def priceplan():
 
         pricestandard=input("Price of a Standard ticket: £")
         
-        pricefirst=input("Price of a First Class ticket: £")
+        if pricestandard.isdigit():
+            
+            if firstyes == 'y':
+            
+                pricefirst=input("Price of a First Class ticket: £")
+                
+            elif firstyes == 'n':
+                
+                priceplancalc()
+                
+            else:
+                
+                print("")
+                print("Sorry! Something has gone wrong from our side, please try again...")
+                print("")
+                mainmenu()
+            
+            if pricefirst.isdigit():
+                
+                priceplancalc()
+                
+            else:
+                
+                print("Invalid Input! You have to enter a number for this question. Please try again...")
+                
+                print("")
+                priceplannext()
         
-        priceplancalc()
+        else:
+            
+            print("Invalid Input! You have to enter a number for this question. Please try again...")
+            
+            print("")
+            priceplannext()
         
     def priceplancalc():
         
@@ -625,6 +737,11 @@ def priceplan():
         global flightcost
         global flightincome
         global flightprofit
+        global pricefirst
+        
+        if firstyes == 'n':
+        
+            pricefirst = '0'
         
         flightcostperseat = float(planechoicerun) * float(distance) / 100
         
@@ -649,7 +766,11 @@ def priceplan():
         print("Number of First Class Seats - " +str(firstclassseats))
         print("Number of Standard Seats - " +str(standardseatsnumb))
         print("Standard Ticket Price - £" +pricestandard)
-        print("First Ticket Price - £" +pricefirst)
+        
+        if firstyes == 'y':
+            
+            print("First Ticket Price - £" +pricefirst)
+            
         print("Flight Cost (Per Seat) - £" +str(flightcostperseat))
         print("Flight Cost - £" +str(flightcost))
         print("Flight Income - £" +str(flightincome))
@@ -712,6 +833,42 @@ def cleardata():
         global flightcost
         global flightincome
         global flightprofit
+        global flight1
+        global flight1uk
+        global flight1ukcode
+        global flight1ukcodelwr
+        global flight1os
+        global flight1oscode
+        global flight1oscodelwr
+        global flight1planechoice
+        global flight1standard
+        global flight1first
+        global flight1distance
+        global flight1firstyes
+        global flight2
+        global flight2uk
+        global flight2ukcode
+        global flight2ukcodelwr
+        global flight2os
+        global flight2oscode
+        global flight2oscodelwr
+        global flight2planechoice
+        global flight2standard
+        global flight2first
+        global flight2distance
+        global flight2firstyes
+        global flight3
+        global flight3uk
+        global flight3ukcode
+        global flight3ukcodelwr
+        global flight3os
+        global flight3oscode
+        global flight3oscodelwr
+        global flight3planechoice
+        global flight3standard
+        global flight3first
+        global flight3distance
+        global flight3firstyes
         
         ukairportchoice = ''
         overseasairportchoice = ''
@@ -728,6 +885,42 @@ def cleardata():
         flightcost = ''
         flightincome = ''
         flightprofit = ''
+        flight1 = 'No Flight Scheduled.'
+        flight1uk = 'N/A'
+        flight1ukcode = 'N/A'
+        flight1ukcodelwr = 'N/A'
+        flight1os = 'N/A'
+        flight1oscode = 'N/A'
+        flight1oscodelwr = 'N/A'
+        flight1planechoice = 'N/A'
+        flight1standard = 'N/A'
+        flight1first = 'N/A'
+        flight1distance = 'N/A'
+        flight1firstyes = 'n'
+        flight2 = 'No Flight Scheduled.'
+        flight2uk = 'N/A'
+        flight2ukcode = 'N/A'
+        flight2ukcodelwr = 'N/A'
+        flight2os = 'N/A'
+        flight2oscode = 'N/A'
+        flight2oscodelwr = 'N/A'
+        flight2planechoice = 'N/A'
+        flight2standard = 'N/A'
+        flight2first = 'N/A'
+        flight2distance = 'N/A'
+        flight2firstyes = 'n'
+        flight3 = 'No Flight Scheduled.'
+        flight3uk = 'N/A'
+        flight3ukcode = 'N/A'
+        flight3ukcodelwr = 'N/A'
+        flight3os = 'N/A'
+        flight3oscode = 'N/A'
+        flight3oscodelwr = 'N/A'
+        flight3planechoice = 'N/A'
+        flight3standard = 'N/A'
+        flight3first = 'N/A'
+        flight3distance = 'N/A'
+        flight3firstyes = 'n'
         
         print("Your data has now been cleared!")
         print("")
@@ -858,6 +1051,7 @@ def saveflight():
             global flight1planechoice
             global flight1standard
             global flight1first
+            global flight1firstyes
             
             flight1=(ukairportchoice+ " - " +overseasairportchoice+ "")
             
@@ -917,6 +1111,8 @@ def saveflight():
             
             flight1first=pricefirst
             
+            flight1firstyes=firstyes
+            
             next3()
             
         def next3():
@@ -972,6 +1168,7 @@ def saveflight():
             global flight2planechoice
             global flight2standard
             global flight2first
+            global flight2firstyes
             
             flight2=(ukairportchoice+ " - " +overseasairportchoice+ "")
             
@@ -1031,6 +1228,8 @@ def saveflight():
             
             flight2first=pricefirst
             
+            flight2firstyes=firstyes
+            
             next3()
             
         def next3():
@@ -1086,6 +1285,7 @@ def saveflight():
             global flight3planechoice
             global flight3standard
             global flight3first
+            global flight3firstyes
             
             flight3=(ukairportchoice+ " - " +overseasairportchoice+ "")
             
@@ -1144,6 +1344,8 @@ def saveflight():
             flight3standard=pricestandard
             
             flight3first=pricefirst
+            
+            flight3firstyes=firstyes
             
             next3()
             
@@ -1208,7 +1410,10 @@ def availflights():
     print("Plane Model - " +flight1planechoice)
     print("")
     print("Economy Class - Starting at: £" +flight1standard)
-    print("First Class - Starting at: £" +flight1first)
+    
+    if flight1firstyes == 'y':
+    
+        print("First Class - Starting at: £" +flight1first)
     
     print("")
     print("Flight 2:")
@@ -1223,7 +1428,10 @@ def availflights():
     print("Plane Model - " +flight2planechoice)
     print("")
     print("Economy Class - Starting at: £" +flight2standard)
-    print("First Class - Starting at: £" +flight2first)
+    
+    if flight2firstyes == 'y':
+    
+        print("First Class - Starting at: £" +flight2first)
     
     print("")
     print("Flight 3:")
@@ -1238,7 +1446,10 @@ def availflights():
     print("Plane Model - " +flight3planechoice)
     print("")
     print("Economy Class - Starting at: £" +flight3standard)
-    print("First Class - Starting at: £" +flight3first)
+    
+    if flight3firstyes == 'y':
+    
+        print("First Class - Starting at: £" +flight3first)
     
     print("")
     print("-----------------------------------------------------------")
@@ -1270,7 +1481,11 @@ def filehandlesection():
     file.write("Aircraft model = " +flight1planechoice+ "\n")
     file.write("" "\n")
     file.write("Economy Ticket Price = £" +flight1standard+ "\n")
-    file.write("First Class Ticket Price = £" +flight1first+ "\n")
+    
+    if flight1firstyes == 'y':
+    
+        file.write("First Class Ticket Price = £" +flight1first+ "\n")
+        
     file.write("" "\n")
     file.write("-------------------------------------------""\n")
     
@@ -1284,7 +1499,11 @@ def filehandlesection():
     file.write("Aircraft model = " +flight2planechoice+ "\n")
     file.write("" "\n")
     file.write("Economy Ticket Price = £" +flight2standard+ "\n")
-    file.write("First Class Ticket Price = £" +flight2first+ "\n")
+    
+    if flight2firstyes == 'y':
+    
+        file.write("First Class Ticket Price = £" +flight2first+ "\n")
+        
     file.write("" "\n")
     file.write("-------------------------------------------""\n")
     
@@ -1298,13 +1517,17 @@ def filehandlesection():
     file.write("Aircraft model = " +flight3planechoice+ "\n")
     file.write("" "\n")
     file.write("Economy Ticket Price = £" +flight3standard+ "\n")
-    file.write("First Class Ticket Price = £" +flight3first+ "\n")
+    
+    if flight3firstyes == 'y':
+    
+        file.write("First Class Ticket Price = £" +flight3first+ "\n")
+        
     file.write("" "\n")
     file.write("-------------------------------------------""\n")
     
     file.close()
     
-    print("The database file has also been updated! Please completely close the file and open it again for the updated version.")
+    print("The database file has been updated! Please completely close the file and open it again for the updated version.")
     
     print("")
     mainmenu()
