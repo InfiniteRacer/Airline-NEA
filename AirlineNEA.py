@@ -582,21 +582,23 @@ def priceplan():
         
     def priceplancheck4():
         
-        if maxrange == distance:
+        if int(maxrange) == int(distance):
             
-            print("You need to select a different aircraft! It isn't possible/unsafe to complete the route with the selected aircraft.")
+            print("You need to select a different aircraft! It isn't possible/unsafe* to complete the route with the selected aircraft.")
             print("")
-            print("Your Aircrafts Maxiumum Range is " +planechoicerange+ "km!")
+            print("Your Aircrafts Maximum Range is " +planechoicerange+ "km!")
             print("Your Selected Journey Length is " +distance+ "km!")
+            print("")
+            print("*Routes can't be close OR the exact same to the maximum distance of the selected aircraft for safety reasons.")
             
             print("")
             mainmenu()
             
-        elif maxrange < distance:
+        elif int(maxrange) < int(distance):
             
             print("You need to select a different aircraft! It isn't possible to complete the route with the selected aircraft.")
             print("")
-            print("Your Aircrafts Maxiumum Range is " +planechoicerange+ "km!")
+            print("Your Aircrafts Maximum Range is " +planechoicerange+ "km!")
             print("Your Selected Journey Length is " +distance+ "km!")
             
             print("")
