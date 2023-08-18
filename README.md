@@ -21,4 +21,4 @@ OS (Overseas) Codes:
 - AMS
 - CAI
 
-Airport codes ARE ACCEPTED in lowercase (Example - lpl, jfk, ams)
+Airport codes ARE ACCEPTED in lowercase (Example - lpl, jFk, AmS)
