@@ -32,40 +32,33 @@ plane3minfirst = '14'
 #UK Airports
 ukairport1 = 'Liverpool John Lennon'
 ukairport1code = 'LPL'
-ukairport1codelwr = 'lpl'
 #=============
 ukairport2 = 'Bournemouth International'
 ukairport2code = 'BOH'
-ukairport2codelwr = 'boh'
 
 #Overseas Airports
 overseasairport1 = 'John F Kennedy International'
 overseasairport1code = 'JFK'
-overseasairport1codelwr = 'jfk'
 overseasairport1lpl = '5326'
 overseasairport1boh = '5486'
 #===================
 overseasairport2 = 'Paris-Orly'
 overseasairport2code = 'ORY'
-overseasairport2codelwr = 'ory'
 overseasairport2lpl = '629'
 overseasairport2boh = '379'
 #===================
 overseasairport3 = 'Adolfo Suarez Madrid- Barajas'
 overseasairport3code = 'MAD'
-overseasairport3codelwr = 'mad'
 overseasairport3lpl = '1428'
 overseasairport3boh = '1151'
 #===================
 overseasairport4 = 'Amsterdam Schiphol'
 overseasairport4code = 'AMS'
-overseasairport4codelwr = 'ams'
 overseasairport4lpl = '526'
 overseasairport4boh = '489'
 #===================
 overseasairport5 = 'Cairo International'
 overseasairport5code = 'CAI'
-overseasairport5codelwr = 'cai'
 overseasairport5lpl = '3779'
 overseasairport5boh = '3584'
 
@@ -248,9 +241,9 @@ def airportdetails():
         print("You have selected " +ukairportchoice+ ".")
         print("")
         
-        overseasairportchoicenon=input("Enter Overseas Airport Code: ")
+        overseasairportchoicenon1=input("Enter Overseas Airport Code: ")
         
-        if overseasairportchoicenon.isdigit():
+        if overseasairportchoicenon1.isdigit():
             
             print("Invalid Input! Airport codes are THREE LETTERS. (Example - JFK) Please try again...")
             print("")
@@ -260,18 +253,20 @@ def airportdetails():
         else:
             
             print("")
+            
+        overseasairportchoicenon = overseasairportchoicenon1.upper()
         
-        if overseasairportchoicenon == overseasairport1code or overseasairportchoicenon == overseasairport1codelwr:
+        if overseasairportchoicenon == overseasairport1code:
             
             overseasairportchoicecode = overseasairport1code
             
             overseasairportchoice = overseasairport1
             
-            if ukairportchoicecode == ukairport1code or ukairportchoicecode == ukairport1codelwr:
+            if ukairportchoicecode == ukairport1code:
                 
                 distance = overseasairport1lpl
                 
-            elif ukairportchoicecode == ukairport2code or ukairportchoicecode == ukairport2codelwr:
+            elif ukairportchoicecode == ukairport2code:
                 
                 distance = overseasairport1boh
                 
@@ -284,17 +279,17 @@ def airportdetails():
             
             airportdetailsfinal()
             
-        elif overseasairportchoicenon == overseasairport2code or overseasairportchoicenon == overseasairport2codelwr:
+        elif overseasairportchoicenon == overseasairport2code:
             
             overseasairportchoicecode = overseasairport2code
             
             overseasairportchoice = overseasairport2
             
-            if ukairportchoicecode == ukairport1code or ukairportchoicecode == ukairport1codelwr:
+            if ukairportchoicecode == ukairport1code:
                 
                 distance = overseasairport2lpl
                 
-            elif ukairportchoicecode == ukairport2code or ukairportchoicecode == ukairport2codelwr:
+            elif ukairportchoicecode == ukairport2code:
                 
                 distance = overseasairport2boh
                 
@@ -307,17 +302,17 @@ def airportdetails():
             
             airportdetailsfinal()
             
-        elif overseasairportchoicenon == overseasairport3code or overseasairportchoicenon == overseasairport3codelwr:
+        elif overseasairportchoicenon == overseasairport3code:
             
             overseasairportchoicecode = overseasairport3code
             
             overseasairportchoice = overseasairport3
             
-            if ukairportchoicecode == ukairport1code or ukairportchoicecode == ukairport1code:
+            if ukairportchoicecode == ukairport1code:
                 
                 distance = overseasairport3lpl
                 
-            elif ukairportchoicecode == ukairport2code or ukairportchoicecode == ukairport2code:
+            elif ukairportchoicecode == ukairport2code:
                 
                 distance = overseasairport3boh
                 
@@ -330,17 +325,17 @@ def airportdetails():
 
             airportdetailsfinal()
             
-        elif overseasairportchoicenon == overseasairport4code or overseasairportchoicenon == overseasairport4codelwr:
+        elif overseasairportchoicenon == overseasairport4code:
             
             overseasairportchoicecode = overseasairport4code
             
             overseasairportchoice = overseasairport4
             
-            if ukairportchoicecode == ukairport1code or ukairportchoicecode == ukairport1codelwr:
+            if ukairportchoicecode == ukairport1code:
                 
                 distance = overseasairport4lpl
                 
-            elif ukairportchoicecode == ukairport2code or ukairportchoicecode == ukairport2codelwr:
+            elif ukairportchoicecode == ukairport2code:
                 
                 distance = overseasairport4boh
                 
@@ -353,17 +348,17 @@ def airportdetails():
 
             airportdetailsfinal()
             
-        elif overseasairportchoicenon == overseasairport5code or overseasairportchoicenon == overseasairport5codelwr:
+        elif overseasairportchoicenon == overseasairport5code:
             
             overseasairportchoicecode = overseasairport5code
             
             overseasairportchoice = overseasairport5
             
-            if ukairportchoicecode == ukairport1code or ukairportchoicecode == ukairport1codelwr:
+            if ukairportchoicecode == ukairport1code:
                 
                 distance = overseasairport5lpl
                 
-            elif ukairportchoicecode == ukairport2code or ukairportchoicecode == ukairport2codelwr:
+            elif ukairportchoicecode == ukairport2code:
                 
                 distance = overseasairport5boh
                 
@@ -390,9 +385,9 @@ def airportdetails():
         
         mainmenu()
     
-    ukairportchoicenon=input("Enter UK Airport Code: ")
+    ukairportchoicenon1=input("Enter UK Airport Code: ")
     
-    if ukairportchoicenon.isdigit():
+    if ukairportchoicenon1.isdigit():
             
         print("Invalid Input! Airport codes are THREE LETTERS. (Example - LPL) Please try again...")
         print("")
@@ -402,8 +397,10 @@ def airportdetails():
     else:
             
         print("")
+        
+    ukairportchoicenon = ukairportchoicenon1.upper()
     
-    if ukairportchoicenon == ukairport1code or ukairportchoicenon == ukairport1codelwr:
+    if ukairportchoicenon == ukairport1code:
         
         ukairportchoicecode = ukairport1code
         
@@ -411,7 +408,7 @@ def airportdetails():
 
         airportdetailsnext()
         
-    elif ukairportchoicenon == ukairport2code or ukairportchoicenon == ukairport2codelwr:
+    elif ukairportchoicenon == ukairport2code:
         
         ukairportchoicecode = ukairport2code
         
