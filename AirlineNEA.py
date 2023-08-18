@@ -70,6 +70,8 @@ overseasairportchoicecode = ''
 planechoice = ''
 #====================
 firstyes = 'n'
+#====================
+firstdoneyes = 'n'
 
 #Saved Flight Database
 flight1 = 'No Flight Scheduled.'
@@ -96,6 +98,8 @@ flight1distance = 'N/A'
 #====================
 flight1firstyes = 'n'
 #====================
+flight1set = 'n'
+#====================
 flight2 = 'No Flight Scheduled.'
 #====================
 flight2uk = 'N/A'
@@ -120,6 +124,8 @@ flight2distance = 'N/A'
 #====================
 flight2firstyes = 'n'
 #====================
+flight2set = 'n'
+#====================
 flight3 = 'No Flight Scheduled.'
 #====================
 flight3uk = 'N/A'
@@ -143,6 +149,8 @@ flight3first = 'N/A'
 flight3distance = 'N/A'
 #====================
 flight3firstyes = 'n'
+#====================
+flight3set = 'n'
 
 #==============================================================================================
 
@@ -496,11 +504,18 @@ def flightdetails():
         
             global firstclassseats
             global standardseatsnumb
+            global firstdoneyes
         
             firstclassseats = firstclassseatsnon
             standardseatsnumb = float(planechoicecap) - float(firstclassseats) * 2
             
+            firstdoneyes = 'y'
+            
             mainmenu()
+    
+    global firstdoneyes
+    
+    firstdoneyes = 'n'
     
     print("What type of aircraft would you like to be used?")
     
@@ -655,7 +670,19 @@ def priceplan():
         
     def priceplancheck3():
         
-        if firstclassseats == '':
+        if firstdoneyes == 'y':
+        
+            if firstclassseats == '':
+                
+                print("You need to enter all the details (Including About First Class) before continuing.")
+                print("")
+                mainmenu()
+                
+            else:
+                
+                priceplancheck4()
+                
+        elif firstdoneyes == 'n':
             
             print("You need to enter all the details (Including About First Class) before continuing.")
             print("")
@@ -663,7 +690,10 @@ def priceplan():
             
         else:
             
-            priceplancheck4()
+            print("Sorry! Something has gone wrong from our side, please try again!")
+            print("")
+            
+            mainmenu()
         
     def priceplancheck4():
         
@@ -847,6 +877,7 @@ def cleardata():
         global flight1first
         global flight1distance
         global flight1firstyes
+        global flight1set
         global flight2
         global flight2uk
         global flight2ukcode
@@ -857,6 +888,7 @@ def cleardata():
         global flight2first
         global flight2distance
         global flight2firstyes
+        global flight2set
         global flight3
         global flight3uk
         global flight3ukcode
@@ -867,6 +899,8 @@ def cleardata():
         global flight3first
         global flight3distance
         global flight3firstyes
+        global flight3set
+        global firstdoneyes
         
         ukairportchoice = ''
         overseasairportchoice = ''
@@ -893,6 +927,7 @@ def cleardata():
         flight1first = 'N/A'
         flight1distance = 'N/A'
         flight1firstyes = 'n'
+        flight1set = 'n'
         flight2 = 'No Flight Scheduled.'
         flight2uk = 'N/A'
         flight2ukcode = 'N/A'
@@ -903,6 +938,7 @@ def cleardata():
         flight2first = 'N/A'
         flight2distance = 'N/A'
         flight2firstyes = 'n'
+        flight2set = 'n'
         flight3 = 'No Flight Scheduled.'
         flight3uk = 'N/A'
         flight3ukcode = 'N/A'
@@ -913,6 +949,8 @@ def cleardata():
         flight3first = 'N/A'
         flight3distance = 'N/A'
         flight3firstyes = 'n'
+        flight3set = 'n'
+        firstdoneyes = 'n'
         
         print("Your data has now been cleared!")
         print("")
@@ -995,6 +1033,13 @@ def saveflight():
     savecheckpoint=input("Which save slot would you like to use? (Enter '0' to cancel) ")
     print("")
     
+    if savecheckpoint.isalpha():
+        
+        print("Invalid Input! You have to enter a number for this question. Please try again...")
+        print()
+        
+        mainmenu()
+    
     if savecheckpoint == '0':
         
         print("Canceled!")
@@ -1042,6 +1087,7 @@ def saveflight():
             global flight1standard
             global flight1first
             global flight1firstyes
+            global flight1set
             
             flight1=(ukairportchoice+ " - " +overseasairportchoice+ "")
             
@@ -1060,6 +1106,8 @@ def saveflight():
             flight1first=pricefirst
             
             flight1firstyes=firstyes
+            
+            flight1set = 'y'
             
             next3()
             
@@ -1115,6 +1163,7 @@ def saveflight():
             global flight2standard
             global flight2first
             global flight2firstyes
+            global flight2set
             
             flight2=(ukairportchoice+ " - " +overseasairportchoice+ "")
             
@@ -1133,6 +1182,8 @@ def saveflight():
             flight2first=pricefirst
             
             flight2firstyes=firstyes
+            
+            flight2set = 'y'
             
             next3()
             
@@ -1188,6 +1239,7 @@ def saveflight():
             global flight3standard
             global flight3first
             global flight3firstyes
+            global flight3set
             
             flight3=(ukairportchoice+ " - " +overseasairportchoice+ "")
             
@@ -1206,6 +1258,8 @@ def saveflight():
             flight3first=pricefirst
             
             flight3firstyes=firstyes
+            
+            flight3set = 'y'
             
             next3()
             
@@ -1271,9 +1325,15 @@ def availflights():
     print("")
     print("Economy Class - Starting at: £" +flight1standard)
     
-    if flight1firstyes == 'y':
+    if flight1set == 'n':
+        
+        print("First Class - Starting at: £N/A")
+        
+    elif flight1set == 'y':
     
-        print("First Class - Starting at: £" +flight1first)
+        if flight1firstyes == 'y':
+    
+            print("First Class - Starting at: £" +flight1first)
     
     print("")
     print("Flight 2:")
@@ -1289,9 +1349,15 @@ def availflights():
     print("")
     print("Economy Class - Starting at: £" +flight2standard)
     
-    if flight2firstyes == 'y':
+    if flight2set == 'n':
+        
+        print("First Class - Starting at: £N/A")
+        
+    elif flight2set == 'y':
     
-        print("First Class - Starting at: £" +flight2first)
+        if flight2firstyes == 'y':
+    
+            print("First Class - Starting at: £" +flight2first)
     
     print("")
     print("Flight 3:")
@@ -1307,9 +1373,15 @@ def availflights():
     print("")
     print("Economy Class - Starting at: £" +flight3standard)
     
-    if flight3firstyes == 'y':
+    if flight3set == 'n':
+        
+        print("First Class - Starting at: £N/A")
+        
+    elif flight3set == 'y':
     
-        print("First Class - Starting at: £" +flight3first)
+        if flight3firstyes == 'y':
+    
+            print("First Class - Starting at: £" +flight3first)
     
     print("")
     print("-----------------------------------------------------------")
@@ -1342,9 +1414,15 @@ def filehandlesection():
     file.write("" "\n")
     file.write("Economy Ticket Price = £" +flight1standard+ "\n")
     
-    if flight1firstyes == 'y':
+    if flight1set == 'n':
+        
+        file.write("First Class Ticket Price = £N/A" "\n")
+        
+    if flight1set == 'y':
     
-        file.write("First Class Ticket Price = £" +flight1first+ "\n")
+        if flight1firstyes == 'y':
+    
+            file.write("First Class Ticket Price = £" +flight1first+ "\n")
         
     file.write("" "\n")
     file.write("-------------------------------------------""\n")
@@ -1360,9 +1438,15 @@ def filehandlesection():
     file.write("" "\n")
     file.write("Economy Ticket Price = £" +flight2standard+ "\n")
     
-    if flight2firstyes == 'y':
+    if flight2set == 'n':
+        
+        file.write("First Class Ticket Price = £N/A" "\n")
+        
+    if flight2set == 'y':
     
-        file.write("First Class Ticket Price = £" +flight2first+ "\n")
+        if flight2firstyes == 'y':
+    
+            file.write("First Class Ticket Price = £" +flight2first+ "\n")
         
     file.write("" "\n")
     file.write("-------------------------------------------""\n")
@@ -1378,9 +1462,15 @@ def filehandlesection():
     file.write("" "\n")
     file.write("Economy Ticket Price = £" +flight3standard+ "\n")
     
-    if flight3firstyes == 'y':
+    if flight3set == 'n':
+        
+        file.write("First Class Ticket Price = £N/A" "\n")
+        
+    if flight3set == 'y':
     
-        file.write("First Class Ticket Price = £" +flight3first+ "\n")
+        if flight3firstyes == 'y':
+    
+            file.write("First Class Ticket Price = £" +flight3first+ "\n")
         
     file.write("" "\n")
     file.write("-------------------------------------------""\n")
