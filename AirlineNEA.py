@@ -241,9 +241,9 @@ def airportdetails():
         print("You have selected " +ukairportchoice+ ".")
         print("")
         
-        overseasairportchoicenon1=input("Enter Overseas Airport Code: ")
+        overseasairportchoicenon=input("Enter Overseas Airport Code: ")
         
-        if overseasairportchoicenon1.isdigit():
+        if overseasairportchoicenon.isdigit():
             
             print("Invalid Input! Airport codes are THREE LETTERS. (Example - JFK) Please try again...")
             print("")
@@ -254,7 +254,7 @@ def airportdetails():
             
             print("")
             
-        overseasairportchoicenon = overseasairportchoicenon1.upper()
+        overseasairportchoicenon = overseasairportchoicenon.upper()
         
         if overseasairportchoicenon == overseasairport1code:
             
@@ -385,9 +385,9 @@ def airportdetails():
         
         mainmenu()
     
-    ukairportchoicenon1=input("Enter UK Airport Code: ")
+    ukairportchoicenon=input("Enter UK Airport Code: ")
     
-    if ukairportchoicenon1.isdigit():
+    if ukairportchoicenon.isdigit():
             
         print("Invalid Input! Airport codes are THREE LETTERS. (Example - LPL) Please try again...")
         print("")
@@ -398,7 +398,7 @@ def airportdetails():
             
         print("")
         
-    ukairportchoicenon = ukairportchoicenon1.upper()
+    ukairportchoicenon = ukairportchoicenon.upper()
     
     if ukairportchoicenon == ukairport1code:
         
@@ -512,6 +512,13 @@ def flightdetails():
     
     print("")
     
+    if planechoicenon.isalpha():
+        
+        print("Invalid Input! Please use a number above instead of a letter/word.")
+        print("")
+        
+        mainmenu()
+    
     if planechoicenon == '1':
         
         print("Run Cost for each Seat (Each 100km) - £" +plane1run)
@@ -577,7 +584,7 @@ def flightdetails():
         
     else:
         
-        print("Invalid Input. We cannot find that aircraft type, please try again.")
+        print("Invalid Input! We cannot find that aircraft type, please try again.")
         print("")
         
         mainmenu()
@@ -833,10 +840,8 @@ def cleardata():
         global flight1
         global flight1uk
         global flight1ukcode
-        global flight1ukcodelwr
         global flight1os
         global flight1oscode
-        global flight1oscodelwr
         global flight1planechoice
         global flight1standard
         global flight1first
@@ -845,10 +850,8 @@ def cleardata():
         global flight2
         global flight2uk
         global flight2ukcode
-        global flight2ukcodelwr
         global flight2os
         global flight2oscode
-        global flight2oscodelwr
         global flight2planechoice
         global flight2standard
         global flight2first
@@ -857,10 +860,8 @@ def cleardata():
         global flight3
         global flight3uk
         global flight3ukcode
-        global flight3ukcodelwr
         global flight3os
         global flight3oscode
-        global flight3oscodelwr
         global flight3planechoice
         global flight3standard
         global flight3first
@@ -885,10 +886,8 @@ def cleardata():
         flight1 = 'No Flight Scheduled.'
         flight1uk = 'N/A'
         flight1ukcode = 'N/A'
-        flight1ukcodelwr = 'N/A'
         flight1os = 'N/A'
         flight1oscode = 'N/A'
-        flight1oscodelwr = 'N/A'
         flight1planechoice = 'N/A'
         flight1standard = 'N/A'
         flight1first = 'N/A'
@@ -897,10 +896,8 @@ def cleardata():
         flight2 = 'No Flight Scheduled.'
         flight2uk = 'N/A'
         flight2ukcode = 'N/A'
-        flight2ukcodelwr = 'N/A'
         flight2os = 'N/A'
         flight2oscode = 'N/A'
-        flight2oscodelwr = 'N/A'
         flight2planechoice = 'N/A'
         flight2standard = 'N/A'
         flight2first = 'N/A'
@@ -909,10 +906,8 @@ def cleardata():
         flight3 = 'No Flight Scheduled.'
         flight3uk = 'N/A'
         flight3ukcode = 'N/A'
-        flight3ukcodelwr = 'N/A'
         flight3os = 'N/A'
         flight3oscode = 'N/A'
-        flight3oscodelwr = 'N/A'
         flight3planechoice = 'N/A'
         flight3standard = 'N/A'
         flight3first = 'N/A'
@@ -1041,10 +1036,8 @@ def saveflight():
             global flight1
             global flight1uk
             global flight1ukcode
-            global flight1ukcodelwr
             global flight1os
             global flight1oscode
-            global flight1oscodelwr
             global flight1planechoice
             global flight1standard
             global flight1first
@@ -1056,51 +1049,9 @@ def saveflight():
             
             flight1ukcode=ukairportchoicecode
             
-            if ukairportchoicecode == ukairport1code:
-                
-                flight1ukcodelwr=ukairport1codelwr
-                
-            elif ukairportchoicecode == ukairport2code:
-                
-                flight1ukcodelwr=ukairport2codelwr
-                
-            else:
-                
-                print("Sorry! Something has gone wrong from our side, please try again...")
-                print("")
-                
-                mainmenu()
-            
             flight1os=overseasairportchoice
             
             flight1oscode=overseasairportchoicecode
-            
-            if overseasairportchoicecode == overseasairport1code:
-                
-                flight1oscodelwr=overseasairport1codelwr
-                
-            elif overseasairportchoicecode == overseasairport2code:
-                
-                flight1oscodelwr=overseasairport2codelwr
-                
-            elif overseasairportchoicecode == overseasairport3code:
-                
-                flight1oscodelwr=overseasairport3codelwr
-                
-            elif overseasairportchoicecode == overseasairport4code:
-                
-                flight1oscodelwr=overseasairport4codelwr
-                
-            elif overseasairportchoicecode == overseasairport5code:
-                
-                flight1oscodelwr=overseasairport5codelwr
-                
-            else:
-                
-                print("Sorry! Something has gone wrong from our side, please try again...")
-                print("")
-                
-                mainmenu()
             
             flight1planechoice=planechoice
             
@@ -1158,10 +1109,8 @@ def saveflight():
             global flight2
             global flight2uk
             global flight2ukcode
-            global flight2ukcodelwr
             global flight2os
             global flight2oscode
-            global flight2oscodelwr
             global flight2planechoice
             global flight2standard
             global flight2first
@@ -1173,51 +1122,9 @@ def saveflight():
     
             flight2ukcode=ukairportchoicecode
             
-            if ukairportchoicecode == ukairport1code:
-                
-                flight2ukcodelwr=ukairport1codelwr
-                
-            elif ukairportchoicecode == ukairport2code:
-                
-                flight2ukcodelwr=ukairport2codelwr
-                
-            else:
-                
-                print("Sorry! Something has gone wrong from our side, please try again...")
-                print("")
-                
-                mainmenu()
-            
             flight2os=overseasairportchoice
             
             flight2oscode=overseasairportchoicecode
-            
-            if overseasairportchoicecode == overseasairport1code:
-                
-                flight2oscodelwr=overseasairport1codelwr
-                
-            elif overseasairportchoicecode == overseasairport2code:
-                
-                flight2oscodelwr=overseasairport2codelwr
-                
-            elif overseasairportchoicecode == overseasairport3code:
-                
-                flight2oscodelwr=overseasairport3codelwr
-                
-            elif overseasairportchoicecode == overseasairport4code:
-                
-                flight2oscodelwr=overseasairport4codelwr
-                
-            elif overseasairportchoicecode == overseasairport5code:
-                
-                flight2oscodelwr=overseasairport5codelwr
-                
-            else:
-                
-                print("Sorry! Something has gone wrong from our side, please try again...")
-                print("")
-                
-                mainmenu()
             
             flight2planechoice=planechoice
             
@@ -1275,10 +1182,8 @@ def saveflight():
             global flight3
             global flight3uk
             global flight3ukcode
-            global flight3ukcodelwr
             global flight3os
             global flight3oscode
-            global flight3oscodelwr
             global flight3planechoice
             global flight3standard
             global flight3first
@@ -1290,51 +1195,9 @@ def saveflight():
         
             flight3ukcode=ukairportchoicecode
             
-            if ukairportchoicecode == ukairport1code:
-                
-                flight3ukcodelwr=ukairport1codelwr
-                
-            elif ukairportchoicecode == ukairport2code:
-                
-                flight3ukcodelwr=ukairport2codelwr
-                
-            else:
-                
-                print("Sorry! Something has gone wrong from our side, please try again...")
-                print("")
-                
-                mainmenu()
-            
             flight3os=overseasairportchoice
             
             flight3oscode=overseasairportchoicecode
-            
-            if overseasairportchoicecode == overseasairport1code:
-                
-                flight3oscodelwr=overseasairport1codelwr
-                
-            elif overseasairportchoicecode == overseasairport2code:
-                
-                flight3oscodelwr=overseasairport2codelwr
-                
-            elif overseasairportchoicecode == overseasairport3code:
-                
-                flight3oscodelwr=overseasairport3codelwr
-                
-            elif overseasairportchoicecode == overseasairport4code:
-                
-                flight3oscodelwr=overseasairport4codelwr
-                
-            elif overseasairportchoicecode == overseasairport5code:
-                
-                flight3oscodelwr=overseasairport5codelwr
-                
-            else:
-                
-                print("Sorry! Something has gone wrong from our side, please try again...")
-                print("")
-                
-                mainmenu()
         
             flight3planechoice=planechoice
             
